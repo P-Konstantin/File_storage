@@ -1,0 +1,23 @@
+{% extends "storage/base.html" %}
+{% load static %}
+
+{% block title %}
+  {{ file.name }}
+{% endblock %}
+
+{% block content %}
+  <div class="file-detail">
+    <img src="{% if file.image %}{{ file.image.url }}{% else %}
+    {% static "img/no_image.png" %}{% endif %}">
+    <h1>{{ file.name }}</h1>
+    <h2>
+      <a href="{{ file.category.get_absolute_url }}">
+        {{ file.category }}
+      </a>
+    </h2>
+    {{ file.description|linebreaks }}
+    <a href="{{ file.upload_file.url }}" download="">
+      <button class="button">Скачать файл</button>
+    </a>
+  </div>
+{% endblock %}
